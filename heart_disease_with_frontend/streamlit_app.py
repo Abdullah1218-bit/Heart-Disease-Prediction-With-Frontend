@@ -3,13 +3,20 @@ import pandas as pd
 import numpy as np
 import joblib
 
+import os
+
+# Helper to load files relative to this script
+def load_pickle(filename):
+    path = os.path.join(os.path.dirname(__file__), filename)
+    return joblib.load(path)
+
 # Load trained model and preprocessing objects
-model = joblib.load('heart_disease_model.pkl')
-scaler = joblib.load('scaler.pkl')
-cols_for_scaling = joblib.load('cols_for_scaling.pkl')
-categoric_cols = joblib.load('categoric_cols.pkl')
-cols_with_outliers = joblib.load('cols_with_outliers.pkl')
-label_encoders = joblib.load('label_encoders.pkl') 
+model = load_pickle('heart_disease_model.pkl')
+scaler = load_pickle('scaler.pkl')
+cols_for_scaling = load_pickle('cols_for_scaling.pkl')
+categoric_cols = load_pickle('categoric_cols.pkl')
+cols_with_outliers = load_pickle('cols_with_outliers.pkl')
+label_encoders = load_pickle('label_encoders.pkl')
 
 # Streamlit App Title
 st.title('❤️ Heart Disease Prediction')
